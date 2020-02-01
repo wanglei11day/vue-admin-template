@@ -113,7 +113,6 @@
         if (command === 'loginout') {
           this.$api.login.logout().then((res) => {
             sessionStorage.removeItem('token') // 删除token
-
             this.$store.state.tab.mainTabs = []
             this.$store.commit('menuRouteLoaded', true)
             this.$store.commit('setNavTree', '')
