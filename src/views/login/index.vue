@@ -107,6 +107,10 @@
 
             this.$api.login.login(userInfo).then((res) => {
               if (res.code == 1000) {
+                 // 读取权限
+               // this.loadPerms()
+                this.$store.commit('menuRouteLoaded', false) // 要求重新加载导航菜单
+
                 
                 sessionStorage.setItem('token', res.data.token)
                 sessionStorage.setItem('user', JSON.stringify(res.data.user)) // 保存用户到本地会话
@@ -136,6 +140,39 @@
             return false
           }
         })
+      },
+        /* 获取用户权限 */
+      loadPerms: function () {
+        this.$api.menu.findTree({
+          type: 0,
+          pid: 0,
+          key: this.$timeDo.format(new Date())
+        }).then(res => {
+          
+          if (res.code === 1000) {
+            let perms = []
+            this.getPerms(perms, res.data)
+            // 保存权限到本地会话
+            sessionStorage.setItem('perms', JSON.stringify(perms))
+            // 保存权限到vuex
+            this.$store.commit('setPerms', perms)
+          }
+        })
+      },
+        /* 处理用户权限 */
+      getPerms: function (permsArray, data) {
+        if (Array.isArray(data)) {
+          data.forEach(item => {
+            if (item.type === 2) {
+              permsArray.push({
+                name: item.name,
+                permission: item.permission
+              })
+            } else {
+              this.getPerms(permsArray, item.children)
+            }
+          })
+        }
       }
     }
   }

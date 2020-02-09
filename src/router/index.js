@@ -191,11 +191,11 @@ const router = new Router({
     },
 
     // 404 page must be placed at the end !!!
-    {
-      path: '*',
-      redirect: '/404',
-      hidden: true
-    }
+    // {
+    //   path: '*',
+    //   redirect: '/404',
+    //   hidden: true
+    // }
 
 
 
@@ -250,6 +250,7 @@ async function addDynamicMenuAndRoutes(userName, to, from) {
   
   if (store.state.app.menuRouteLoaded) {
     console.log('动态菜单和路由已经存在.')
+    
     return
   }
   console.log('动态路由加载...')
@@ -368,10 +369,6 @@ function addDynamicRoutes (menuList = [], routes = []) {
   }
   return routes
 }
-
-
-
-
 
 
 

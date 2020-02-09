@@ -9,6 +9,7 @@ import locale from 'element-ui/lib/locale/lang/en' // lang i18n
 import '@/styles/index.scss' // global css
 import api from './api'
 import axios from 'axios'
+import components from '@/components'
 
 import App from './App'
 import store from './store'
@@ -16,7 +17,12 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
+import './utils/handle';
+import '@/utils/plugin'
+
 Vue.use(api)
+Vue.use(components)
+
 Vue.prototype.$axios = axios
 
 /**
@@ -38,6 +44,9 @@ Vue.use(ElementUI, { locale })
 // Vue.use(ElementUI)
 
 Vue.config.productionTip = false
+
+
+
 
 new Vue({
   el: '#app',

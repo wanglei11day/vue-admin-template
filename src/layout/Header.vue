@@ -76,7 +76,7 @@
   export default {
     name: 'header-frame',
     components: {
-   //   noticViewPage
+      //   noticViewPage
     },
     data() {
       return {
@@ -126,7 +126,7 @@
             sessionStorage.removeItem('mainTabsActiveName')
             this.$router.push('/login')
           }).catch(function (res) {})
-        }else if(command === 'helpPage'){
+        } else if (command === 'helpPage') {
           window.open('static/_book/index.html')
         }
       },
@@ -197,7 +197,7 @@
           pageSize: 5,
           title: '',
           type: 0,
-          status:0,
+          status: 0,
           businessType: 1
         }).then((res) => {
           if (res.code == this.global.responseCode.OK) {
@@ -212,7 +212,7 @@
               status: 2,
               operation: true,
               type: 3,
-              businessType:1,
+              businessType: 1,
               urlTemplate: 'system_messages'
             })
           }
@@ -275,7 +275,7 @@
     beforeDestroy() {
       if (this.timer) {
         clearInterval(this.timer._id)
-        this.timer = null
+        this.timer = null;
       }
     }
   }
